@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableWithoutFeedback, Keyboard, Alert, Image } from 'react-native';
 import Fomulary from './Components/Fomulary';
 import Clima from './Components/Clima';
 
@@ -12,7 +12,8 @@ const App = () =>{
 
   const [ consult, setConsult ] = useState(false)
   const [ result, setResult ] = useState({})
-  const [bgcolor, setBgcolor] = useState('#36868a');
+  const [ bgcolor, setBgcolor] = useState('#4a2d10');
+  const [ logoView, setLogoView ] = useState(true)
 
 
   const { city, country } = search ;
@@ -74,6 +75,19 @@ const App = () =>{
   return (
     <TouchableWithoutFeedback onPress={ () => ocultarTeclado()}>
       <View style={[styles.bg, bgColorApp]}>
+        { logoView=== true  &&
+          <View >
+            <Image 
+            source={require ('./Components/clima.png')}
+            style={styles.imagen}
+            />    
+            <Text style={styles.weatherText}> Weather <Text style={styles.apiText}>API </Text> </Text>
+          </View>
+        }
+
+
+
+
         <Clima 
           result={result}
         />
@@ -81,6 +95,7 @@ const App = () =>{
           search={search}
           setSearch={setSearch}
           setConsult = {setConsult}
+          setLogoView = {setLogoView}
           showAlert = { showAlert }
         />
       </View>
@@ -93,6 +108,23 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'center',
   },
+  imagen:{
+    marginBottom:20,
+
+    alignSelf: 'center',
+    width: 150,
+    height: 150,
+    resizeMode: 'contain',
+  },
+  weatherText:{
+    color:'#fff',
+    marginBottom:20,
+    textAlign:'center',
+    fontSize: 30
+  },
+  apiText:{
+    fontWeight:'bold'
+  }
 
 });
 

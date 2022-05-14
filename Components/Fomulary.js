@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TextInput, TouchableWithoutFeedback, Animated, 
 import { Picker } from '@react-native-picker/picker';
 
 
-const Fomulary = ({ search, setSearch, setConsult }) => {
+const Fomulary = ({ search, setSearch, setConsult, setLogoView }) => {
 
   const { city, country } = search
 
@@ -22,6 +22,7 @@ const Fomulary = ({ search, setSearch, setConsult }) => {
       return;
     }else{
       setConsult( true )
+      setLogoView( false )
     }
   }
 
@@ -64,10 +65,10 @@ const Fomulary = ({ search, setSearch, setConsult }) => {
         selectedValue={country}
         onValueChange={ country => setSearch ({ ...search , country } )}
         >
-          <Picker.Item label='--Seleccionar--' value=""/>
-          <Picker.Item label="México" value="MX"/>
-          <Picker.Item label="Estados Unidos" value="US"/>
-          <Picker.Item label="España" value="ES"/>
+          <Picker.Item label='--Select--' value=""/>
+          <Picker.Item label="Mexico" value="MX"/>
+          <Picker.Item label="United States" value="US"/>
+          <Picker.Item label="Spain" value="ES"/>
           <Picker.Item label="Argentina" value="AR"/>
           <Picker.Item label="Colombia" value="CO"/>
         </Picker>
